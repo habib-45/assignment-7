@@ -1,13 +1,27 @@
-import React from 'react';
+import Link from 'next/link';
 
-const Navber = async() => {
+interface catagoriDataType {
+    slug: string,
+    title: string,
+    topicId: string | null,
+    url: string,
+    scrapable: boolean
+}
 
-    const res =await fetch('https://news-api-v2.vercel.app/api/categories')
+
+const Navber = async () => {
+
+    const res = await fetch('https://news-api-v2.vercel.app/api/categories')
     const categoriesData = await res.json()
-    console.log(categoriesData)
+    const navs:catagoriDataType[] = categoriesData.data
+    const filterData = navs.filter(ca => ca.scrapable)
+    console.log(navs)
     return (
-        <div>
-            <h2></h2>
+        <div className='flex gap-4 justify-center mt-5'>
+            <Link href={'/'}>হোম</Link>
+            {
+                filterData.map((ca, ind) => <Link key={ind} href={ca.slug}>{ca.title}</Link>)
+            }
         </div>
     );
 };
