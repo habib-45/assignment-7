@@ -12,7 +12,9 @@ interface prodactTYpe {
 }
 
 const Marquee = async () => {
-    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products')
+    const res = await fetch(
+        "https://openapi.programming-hero.com/api/bazardor/products"
+    );
     const marqueeData = await res.json()
 
     // console.log(headlines)
@@ -23,7 +25,7 @@ const Marquee = async () => {
 
                 <MarqueeText direction="right" duration={10} className="py-2">
 
-                    {marqueeData.map((ma:prodactTYpe) => <span key={ma.id}>
+                    {marqueeData.slice(0,10).map((ma: prodactTYpe) => <span key={ma.id}>
                         <span>{ma.image}</span>
                         <span> {ma.nameBn}</span>
                         <span> {ma.today.toLocaleString("bn-BD")} টাকা/কেজি</span>

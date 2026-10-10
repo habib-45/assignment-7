@@ -26,7 +26,7 @@ const allProdact = ({ main }: { main: prodactType }) => {
 
     return (
         <div>
-            <div className="card bg-base-100 col-span-2 shadow-sm p-5">
+            <div className="card bg-white col-span-2 shadow-sm p-5">
                 <div className="flex gap-3">
                     <h2 className="h-13 w-13 bg-emerald-50 mb-4 flex items-center justify-center rounded-2xl">{main.image}</h2>
                     <div>

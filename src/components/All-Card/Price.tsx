@@ -17,7 +17,7 @@ export interface CardType {
 
 const PriceUp = async () => {
     const res = await fetch(
-        "https://api.abcz.workers.dev/api/bazardor/products"
+        "https://openapi.programming-hero.com/api/bazardor/products"
     );
     const products: CardType[] = await res.json();
     const priceUp = products
@@ -37,9 +37,9 @@ const PriceUp = async () => {
     return (
         <div>
             <div>
-                <h2 className="card-title mb-4">🔺 আজ দাম বেড়েছে</h2>
+                <h2 className="card-title mb-4 font-bold text-2xl">🔺 আজ দাম বেড়েছে</h2>
 
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 ">
                     {priceUp.slice(0, 6).map((product) => (
                         <PriceUpCard key={product.id} data={product}></PriceUpCard>
                     ))}
@@ -47,11 +47,10 @@ const PriceUp = async () => {
             </div>
 
             <div>
-                <h2 className="card-title mt-10 mb-3">🟢 আজ দাম কমেছে</h2>
-
+                <h2 className="card-title mt-10 mb-3 font-bold text-2xl">🟢 আজ দাম কমেছে</h2>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                    {priceLow.map((product) => (
-                        <PriceLow key={product.id} main={product}></PriceLow>
+                    {priceLow.slice(0, 6).map((product) => (
+                        <PriceLow key={product.id} main={product} />
                     ))}
                 </div>
             </div>

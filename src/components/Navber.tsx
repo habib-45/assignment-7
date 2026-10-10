@@ -1,28 +1,40 @@
-import Link from "next/link";
+"use client";
 
-interface catagoriDataType {
-  id: string;
-  slug: string;
-  nameBn: string;
-  icon: string
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+interface CategoryDataType {
+id: string;
+slug: string;
+nameBn: string;
+icon: string;
+categoryNameBn: string;
 }
 
-const Navber = async () => {
-  const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories"
-  );
+const Navber = ({ navs }: { navs: CategoryDataType[] }) => {
+const pathname = usePathname();
 
-  const categoriesData: catagoriDataType[] = await res.json();
+return ( <nav className="mt-5 mb-4 flex flex-wrap gap-3">
+{navs.map((ca) => {
+const isActive = pathname === `/id/${ca.slug}`;
 
-  return (
-    <div className="flex gap-5 mt-5 ml-7 mb-4">
-      {categoriesData.map((ca) => (
-        <Link key={ca.id} href={`/${ca.slug}`}>
-          {ca.icon}{ca.nameBn}
-        </Link>
-      ))}
-    </div>
-  );
+    return (
+      <Link
+        key={ca.id}
+        href={`/id/${ca.slug}`}
+        className={`rounded-lg py-2 px-2 border-none ${
+          isActive
+            ? "bg-emerald-600 font-semibold text-white"
+            : "text-gray-75 hover:bg-emerald-100"
+        }`}
+      >
+        {ca.icon} {ca.nameBn}
+      </Link>
+    );
+  })}
+</nav>
+
+);
 };
 
 export default Navber;
