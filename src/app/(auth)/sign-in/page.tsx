@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa6";
 import { signIn } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 
@@ -182,7 +183,7 @@ export default function SignIn() {
               className="w-full border border-gray-200 bg-transparent text-xs text-gray-800"
               onPress={() => handleSocialLogin("google")}
             >
-              <span className="font-bold text-red-500"></span>
+              <span className="font-bold text-red-500"><FcGoogle /></span>
               Google দিয়ে চালিয়ে যান
             </Button>
 
@@ -192,7 +193,7 @@ export default function SignIn() {
               className="w-full border border-gray-200 bg-transparent text-xs text-gray-800"
               onPress={() => handleSocialLogin("github")}
             >
-              <span className="font-bold"></span>
+              <span className="font-bold"><FaGithub/> </span>
               GitHub দিয়ে চালিয়ে যান
             </Button>
           </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "@/lib/auth-client";
+import Image from "next/image";
 
 export default function AuthLinks() {
     const { data: session, isPending } = useSession();
@@ -18,18 +19,12 @@ export default function AuthLinks() {
         });
     };
 
-    if (isPending) {
-        return <div className="h-10 w-24 animate-pulse rounded-lg bg-gray-100" />;
-    }
-
     if (!session?.user) {
         return (<div className="flex items-center gap-2"> <Link
             href="/sign-in"
             className="px-4 py-3 font-semibold text-gray-800"
         >
             সাইন ইন </Link>
-
-            ```
             <Link
                 href="/sign-up"
                 className="rounded-[22px] bg-emerald-700 px-4 py-3 font-semibold text-white shadow-md transition hover:bg-emerald-800"
@@ -48,7 +43,7 @@ export default function AuthLinks() {
             className="flex items-center gap-3 rounded-xl p-2 hover:bg-gray-100"
         >
             {session.user.image ? (
-                <img
+                <Image
                     src={session.user.image}
                     alt={session.user.name || "User"}
                     className="h-12 w-12 rounded-full object-cover"

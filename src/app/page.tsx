@@ -1,6 +1,3 @@
-import { readFile } from "fs/promises";
-import path from "path";
-
 import Banner from "@/components/Banner";
 import Card from "@/components/All-Card/Card";
 import PriceUp from "@/components/All-Card/Price";
@@ -13,27 +10,26 @@ interface Product {
   unit: string;
   image: string;
   change: {
-    pct: string;
+    pct: number;
   };
 }
 
+
 export default async function Home() {
-  const filePath = path.join(
-    process.cwd(),
-    "public",
-    "data",
-    "alldata.json"
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products"
   );
 
-  let section: Product[] = [];
-
-  try {
-    const jsonData = await readFile(filePath, "utf8");
-    section = JSON.parse(jsonData);
-  } catch (error) {
-    console.error("Product data load failed:", error);
+  if (!res.ok) {
     throw new Error("পণ্যের ডেটা লোড করা যায়নি");
   }
+
+  const data = await res.json();
+  const section: Product[] = Array.isArray(data)
+    ? data
+    : data.data ?? [];
+
+ 
 
   return (
     <div>
@@ -52,7 +48,7 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {section.map((product) => (
             <Card
               key={product.id}

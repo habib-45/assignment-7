@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { FcGoogle } from "react-icons/fc";
 import { signUp, signIn } from "@/lib/auth-client";
-
+import { FaGithub } from "react-icons/fa6";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 
 import {
@@ -315,7 +315,7 @@ export default function SignUp() {
               className="w-full border border-gray-200 bg-transparent text-xs text-gray-800"
               onClick={handleGoogle}
             >
-              <span className="font-bold text-red-500"></span>
+              <span className="font-bold text-red-500"><FcGoogle /> </span>
               Google দিয়ে চালিয়ে যান
             </Button>
 
@@ -325,7 +325,7 @@ export default function SignUp() {
               className="w-full border border-gray-200 bg-transparent text-xs text-gray-800"
               onClick={handleGithub}
             >
-              <span className="font-bold"></span>
+              <span className="font-bold"><FaGithub/></span>
               GitHub দিয়ে চালিয়ে যান
             </Button>
           </div>

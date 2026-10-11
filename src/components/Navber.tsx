@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 
 interface CategoryDataType {
@@ -17,6 +18,7 @@ const pathname = usePathname();
 return ( <nav className="mt-5 mb-4 flex flex-wrap gap-3">
 {navs.map((ca) => {
 const isActive = pathname === `/id/${ca.slug}`;
+
 
     return (
       <Link
